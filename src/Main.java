@@ -5,42 +5,6 @@ import java.util.Scanner;
 
 public class Main {
 
-    public static LinkedList<Video> getVideoFromFile (String path) throws IOException{
-
-        File file = new File(path);
-
-        if (file.exists() && file.isFile()){
-            BufferedReader reader = new BufferedReader(new FileReader(path));
-            String str = reader.readLine();
-            String [] s;// = str.split(" ");
-            LinkedList<Video> lista = new LinkedList<>();
-            Video video;
-
-            for (int i=0; i<5; i++){
-                s = str.split(" ");
-                video = new Video(s[0], s[1], s[2], s[3]);
-                lista.add(video);
-                str = reader.readLine();
-                //s = str.split(" ");
-            }
-            reader.close();
-            return lista;
-        }else if (file.exists() && file.isDirectory()){
-            BufferedWriter writer = null;
-            File fileDaScrivere = new File(path + "out.txt");
-            writer = new BufferedWriter(new FileWriter(fileDaScrivere));
-            String[] str = file.list();
-
-            for (String s : str){
-                writer.write(s + "\n");
-            }
-            writer.close();
-            return null;
-        }else
-            throw new FileNotFoundException("fnf");
-
-    }
-
     public static void main (String[] args){
 
         Scanner sc = new Scanner(System.in);
